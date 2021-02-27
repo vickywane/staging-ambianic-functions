@@ -3,10 +3,14 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "build" :"parcel index.html"
+    "build": "parcel index.html",
+    "dev": "parcel index.html"
   },
   "license": "MIT",
   "dependencies": {
     "stripe": "^8.135.0"
+  },
+  "devDependencies": {
+    "parcel-bundler": "^1.12.4"
   }
 }
