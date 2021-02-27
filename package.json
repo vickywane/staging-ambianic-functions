@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "build": "parcel index.html",
+    "build": "parcel build index.html",
     "dev": "parcel build index.html"
   },
   "license": "MIT",
