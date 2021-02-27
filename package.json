@@ -4,7 +4,8 @@
   "main": "index.js",
   "scripts": {
     "build": "parcel build index.html",
-    "dev": "parcel build index.html"
+    "dev": "parcel build index.html",
+    "dev-test": "parcel build index.html"
   },
   "license": "MIT",
   "dependencies": {
