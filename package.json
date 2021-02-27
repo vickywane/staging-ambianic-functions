@@ -2,6 +2,9 @@
   "name": "functions",
   "version": "1.0.0",
   "main": "index.js",
+  "scripts": {
+    "build" :"parcel index.html"
+  },
   "license": "MIT",
   "dependencies": {
     "stripe": "^8.135.0"
