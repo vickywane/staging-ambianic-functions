@@ -1,0 +1,36 @@
+name: Functions CI - Integration Test 
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the master branch
+on: [pull_request]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [12.x]
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+    - name: Git checkout 
+      uses: actions/checkout@v2
+
+    - name: Install Node JS ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    
+    - name: Install Newman dependency
+      run: npm install --prefix tests/postman/
+
+    - name: Run the API and Postman's tests
+      run: |
+        cd api && flask run &
+        sleep 2
+        cd tests/postman/ && ./node_modules/newman/bin/newman.js run ahm_api_calls.postman_collection.json -e ahm-local.postman_environment.json
+        kill -9 `lsof -i:5000 -t`
+      env:
+        API_HOST: 0.0.0.0
+        CI: true
